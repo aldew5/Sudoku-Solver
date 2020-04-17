@@ -1,4 +1,4 @@
-SUDOKU-SOLVER
+# Sudoku Solver
 
 A program to solve 9x9 Sudoku puzzles.
 
