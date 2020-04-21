@@ -1,8 +1,7 @@
 """
 STATUS:
 
-update values doesn't work properly. The solver isn't recieving the right
-puzzle.
+Issue with displaying solutions on GUI. Only displays the last row
 """
 
 
@@ -54,10 +53,10 @@ class Puzzle(object):
         self.input_status = {}
         self.values = []
 
-        x, index = 0, 9
-        while x < 495.5:
-            y = 0
-            while y < 495.5:
+        y, index = 0, 9
+        while y < 495.5:
+            x = 0
+            while x < 495.5:
                 new_cell = Cell(0, x, y, 55.5, 55.5)
                 self.cells.append(new_cell)
                 self.input_status[new_cell] = False
@@ -72,9 +71,9 @@ class Puzzle(object):
                     # look at the next nine values
                     index += 9
                 
-                y += 55.5
+                x += 55.5
                 
-            x += 55.5
+            y += 55.5
         
 
     def draw(self, win):
@@ -83,17 +82,26 @@ class Puzzle(object):
 
     def updateValues(self):
         self.values = []
-        index = 9
+        index = 8
         for cell in self.cells:
             index += 1
             if index % 9 == 0:
                 row = []
                 for cell in self.cells[index -9 :index]:
-                    row.append(cell.value)
-
+                    row.append(int(cell.value))
+            
                 if len(row) != 0:
                     self.values.append(row)
-        
+                    
+    def displaySolution(self):
+        y = 0
+        while y < len(self.values):
+            x = 0
+            while x < 9:
+                self.cells[x].set_value(str(self.values[y][x]))
+
+                x += 1
+            y += 1
         
        
         
@@ -130,13 +138,13 @@ while run:
                     if event.key == pygame.K_RETURN:
                         puzzle.updateValues()
 
-                        print('these values', puzzle.values)
                         if solver.solve(puzzle.values):
                             solver.print_puzzle(puzzle.values)
-                            
+                            puzzle.displaySolution()
+                            puzzle.draw(win)
                         
                     elif event.key == pygame.K_BACKSPACE:
-                        new_value = ' '
+                        new_value = '0'
                         cell.set_value(new_value)
                     else:
                         new_value += event.unicode
