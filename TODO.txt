@@ -1,1 +1,0 @@
-Create a GUI to make entering the puzzle easier
