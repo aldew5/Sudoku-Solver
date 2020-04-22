@@ -1,9 +1,3 @@
-"""
-STATUS:
-
-Issue with displaying solutions on GUI. Only displays the last row
-"""
-
 
 import pygame
 import solver
@@ -54,11 +48,13 @@ class Puzzle(object):
         self.values = []
 
         y, index = 0, 9
+        # create a list of the cells and a 2D list of their values
         while y < 495.5:
             x = 0
             while x < 495.5:
                 new_cell = Cell(0, x, y, 55.5, 55.5)
                 self.cells.append(new_cell)
+                # cell default to false meaning not clicked
                 self.input_status[new_cell] = False
 
                 # build a row that will contain the values of cells
@@ -77,6 +73,7 @@ class Puzzle(object):
         
 
     def draw(self, win):
+        # draw all the cells
         for cell in self.cells:
             cell.draw()
 
@@ -85,6 +82,7 @@ class Puzzle(object):
         index = 8
         for cell in self.cells:
             index += 1
+            # create a row of length nine
             if index % 9 == 0:
                 row = []
                 for cell in self.cells[index -9 :index]:
@@ -94,13 +92,15 @@ class Puzzle(object):
                     self.values.append(row)
                     
     def displaySolution(self):
-        y = 0
+        y, c = 0,0
         while y < len(self.values):
             x = 0
             while x < 9:
-                self.cells[x].set_value(str(self.values[y][x]))
+                self.cells[c].set_value(str(self.values[y][x]))
 
                 x += 1
+                c += 1
+                
             y += 1
         
        
@@ -114,27 +114,31 @@ def drawWindow():
 
 
 puzzle = Puzzle()
-text = ''
-edit = None
 
 run = True
 while run:
     for event in pygame.event.get():
+        # close the window
         if event.type == pygame.QUIT:
             run = False
+        # click
         if event.type == pygame.MOUSEBUTTONDOWN:
             # the user clicked on the rect
             for cell in puzzle.cells:
                 if cell.collidepoint(event.pos):
+                    # the cell now accepts input
                     puzzle.input_status[cell] = True
-                    edit = cell
                 else:
                      puzzle.input_status[cell] = False
 
         new_value = ''
+        # get user input for the clicked cell
         if event.type == pygame.KEYDOWN:
             for cell in puzzle.cells:
+                # a cell was clicked on
                 if puzzle.input_status[cell]:
+                    
+                    # return triggers the solution of the puzzle
                     if event.key == pygame.K_RETURN:
                         puzzle.updateValues()
 
@@ -142,10 +146,13 @@ while run:
                             solver.print_puzzle(puzzle.values)
                             puzzle.displaySolution()
                             puzzle.draw(win)
-                        
+
+                    # delete a character
                     elif event.key == pygame.K_BACKSPACE:
                         new_value = '0'
                         cell.set_value(new_value)
+                        
+                    # add a character 
                     else:
                         new_value += event.unicode
                         cell.set_value(new_value)
