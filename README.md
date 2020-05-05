@@ -11,6 +11,4 @@ The correct values for the rest of the puzzle will be displayed.
 # Requirements 
 - Pygame
 
-Install pygame using the command:
-pip install pygame
 
