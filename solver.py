@@ -1,7 +1,3 @@
-"""
-BOX INDEXING ISN'T FUCKING GOD DAMN WORKING!!!
-"""
-
 import math
 
 def get_poss(puzzle, ri, ci):
