@@ -2,7 +2,7 @@
 
 A program to solve 9x9 Sudoku puzzles using a backtracking algorithm.
 
-<img src="https://github.com/aldew5/Sudoku-Solver/blob/master/completed.png" width=400>
+<img src="https://github.com/aldew5/Sudoku-Solver/blob/master/completed.png"width=400>
 
 
 # Usage
