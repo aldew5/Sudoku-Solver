@@ -1,6 +1,8 @@
 # Sudoku Solver
 
-A program to solve 9x9 Sudoku puzzles. The program uses a backtracking algorithm to solve the puzzle.
+A program to solve 9x9 Sudoku puzzles using a backtracking algorithm.
+
+<img src="https://github.com/aldew5/Sudoku-Solver/blob/master/completed.png" width=400>
 
 
 # Usage
