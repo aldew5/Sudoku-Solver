@@ -40,7 +40,6 @@ def get_poss(puzzle, ri, ci):
 
     return poss
 
-
 def find_empty(puzzle):
     for row in puzzle:
         for i in row:
@@ -51,8 +50,6 @@ def find_empty(puzzle):
 def print_puzzle(puzzle):
     for row in puzzle:
         print(*row)
-
-
 
 def solve(puzzle):
     """takes in a 2D array representin the sodoku board
@@ -77,7 +74,3 @@ def solve(puzzle):
             puzzle[ri][ci] = 0
 
     return False
-
-
-
-
