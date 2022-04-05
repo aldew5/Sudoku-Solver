@@ -1,4 +1,3 @@
-
 import pygame
 import solver
 
@@ -7,8 +6,6 @@ pygame.init()
 win = pygame.display.set_mode((500, 500))
 pygame.display.set_caption("Sudoku Solver")
 font = pygame.font.Font(None, 32)
-
-
 clock = pygame.time.Clock()
 
 class Cell(object):
@@ -39,7 +36,6 @@ class Cell(object):
         self.value = new_value
 
     
-
 class Puzzle(object):
     def __init__(self):
         self.solved = False
@@ -71,7 +67,6 @@ class Puzzle(object):
                 
             y += 55.5
         
-
     def draw(self, win):
         # draw all the cells
         for cell in self.cells:
@@ -103,19 +98,16 @@ class Puzzle(object):
                 
             y += 1
         
-       
-        
 def drawWindow():
     win.fill((255,255,255))
     puzzle.draw(win)
 
     pygame.display.update()
         
-
-
+        
 puzzle = Puzzle()
-
 run = True
+
 while run:
     for event in pygame.event.get():
         # close the window
@@ -158,15 +150,3 @@ while run:
                         cell.set_value(new_value)
                         
     drawWindow()
-
-
-
-
-
-
-
-
-
-
-    
-        
